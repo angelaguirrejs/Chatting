@@ -865,9 +865,6 @@ select {
 .overflow-hidden {
   overflow: hidden;
 }
-.scroll-auto {
-  scroll-behavior: auto;
-}
 .overflow-ellipsis {
   text-overflow: ellipsis;
 }
