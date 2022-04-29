@@ -17,6 +17,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//Livewire routes
+
+Route::get('users/', [\App\Http\Livewire\Chat\CreateChat::class, '__invoke'])->name('users');
+Route::get('/chat{key?}', [\App\Http\Livewire\Chat\Main::class, '__invoke'])->name('chat');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
