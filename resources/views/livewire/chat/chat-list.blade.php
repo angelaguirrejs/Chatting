@@ -60,105 +60,21 @@
     </div>
     {{-- End of online contacts --}}
     <div class="overflow-auto h-4/5">
-        <div class="flex bg-gray-100 rounded p-4 mb-4">
-            <img class="rounded-full w-12 mr-4" src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
-            <div class="w-full overflow-hidden">
-                <div class="flex">
-                    <p class="font-bold flex-grow">Nombre</p>
-                    <small class="text-gray-700">9;55 AM</small>
+        @foreach ($conversations as $conversation)
+            <div wire:key="{{ $conversation->id }}" class="flex bg-gray-100 rounded p-4 mb-4" wire:click="$emit('chatUserSelected', {{ $conversation }}, {{ $this->getChatUserInstance($conversation)->id }})">
+                <img class="rounded-full w-12 mr-4" src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
+                <div class="w-full overflow-hidden">
+                    <div class="flex">
+                        <p class="font-bold flex-grow">{{ $this->getChatUserInstance($conversation)->name }}</p>
+                        <small class="text-gray-700">
+                            {{ $conversation->messages->last() != null ? $conversation->messages->last()->created_at->shortAbsoluteDiffForHumans() : '' }}
+                        </small>
+                    </div>
+                    <small class="block overflow-ellipsis overflow-hidden whitespace-nowrap text-gray-700">
+                        {{ $conversation->messages->last() != null ? $conversation->messages->last()->body : '' }}
+                    </small>
                 </div>
-                <small class="block overflow-ellipsis overflow-hidden whitespace-nowrap text-gray-700">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde, minus facere? Quasi, officia quisquam et voluptate</small>
             </div>
-        </div>
-        {{-- End of contact with message --}}
-        <div class="flex bg-gray-100 rounded p-4 mb-4">
-            <img class="rounded-full w-12 mr-4" src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
-            <div class="w-full overflow-hidden">
-                <div class="flex">
-                    <p class="font-bold flex-grow">Nombre</p>
-                    <small class="text-gray-700">9;55 AM</small>
-                </div>
-                <small class="block overflow-ellipsis overflow-hidden whitespace-nowrap text-gray-700">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde, minus facere? Quasi, officia quisquam et voluptate</small>
-            </div>
-        </div>
-        {{-- End of contact with message --}}
-        <div class="flex bg-gray-100 rounded p-4 mb-4">
-            <img class="rounded-full w-12 mr-4" src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
-            <div class="w-full overflow-hidden">
-                <div class="flex">
-                    <p class="font-bold flex-grow">Nombre</p>
-                    <small class="text-gray-700">9;55 AM</small>
-                </div>
-                <small class="block overflow-ellipsis overflow-hidden whitespace-nowrap text-gray-700">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde, minus facere? Quasi, officia quisquam et voluptate</small>
-            </div>
-        </div>
-        {{-- End of contact with message --}}
-        <div class="flex bg-gray-100 rounded p-4 mb-4">
-            <img class="rounded-full w-12 mr-4" src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
-            <div class="w-full overflow-hidden">
-                <div class="flex">
-                    <p class="font-bold flex-grow">Nombre</p>
-                    <small class="text-gray-700">9;55 AM</small>
-                </div>
-                <small class="block overflow-ellipsis overflow-hidden whitespace-nowrap text-gray-700">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde, minus facere? Quasi, officia quisquam et voluptate</small>
-            </div>
-        </div>
-        {{-- End of contact with message --}}
-        <div class="flex bg-gray-100 rounded p-4 mb-4">
-            <img class="rounded-full w-12 mr-4" src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
-            <div class="w-full overflow-hidden">
-                <div class="flex">
-                    <p class="font-bold flex-grow">Nombre</p>
-                    <small class="text-gray-700">9;55 AM</small>
-                </div>
-                <small class="block overflow-ellipsis overflow-hidden whitespace-nowrap text-gray-700">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde, minus facere? Quasi, officia quisquam et voluptate</small>
-            </div>
-        </div>
-        {{-- End of contact with message --}}
-        <div class="flex bg-gray-100 rounded p-4 mb-4">
-            <img class="rounded-full w-12 mr-4" src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
-            <div class="w-full overflow-hidden">
-                <div class="flex">
-                    <p class="font-bold flex-grow">Nombre</p>
-                    <small class="text-gray-700">9;55 AM</small>
-                </div>
-                <small class="block overflow-ellipsis overflow-hidden whitespace-nowrap text-gray-700">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde, minus facere? Quasi, officia quisquam et voluptate</small>
-            </div>
-        </div>
-        {{-- End of contact with message --}}
-        <div class="flex bg-gray-100 rounded p-4 mb-4">
-            <img class="rounded-full w-12 mr-4" src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
-            <div class="w-full overflow-hidden">
-                <div class="flex">
-                    <p class="font-bold flex-grow">Nombre</p>
-                    <small class="text-gray-700">9;55 AM</small>
-                </div>
-                <small class="block overflow-ellipsis overflow-hidden whitespace-nowrap text-gray-700">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde, minus facere? Quasi, officia quisquam et voluptate</small>
-            </div>
-        </div>
-        {{-- End of contact with message --}}
-        <div class="flex bg-gray-100 rounded p-4 mb-4">
-            <img class="rounded-full w-12 mr-4" src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
-            <div class="w-full overflow-hidden">
-                <div class="flex">
-                    <p class="font-bold flex-grow">Nombre</p>
-                    <small class="text-gray-700">9;55 AM</small>
-                </div>
-                <small class="block overflow-ellipsis overflow-hidden whitespace-nowrap text-gray-700">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde, minus facere? Quasi, officia quisquam et voluptate</small>
-            </div>
-        </div>
-        {{-- End of contact with message --}}
-        <div class="flex bg-gray-100 rounded p-4 mb-4">
-            <img class="rounded-full w-12 mr-4" src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
-            <div class="w-full overflow-hidden">
-                <div class="flex">
-                    <p class="font-bold flex-grow">Nombre</p>
-                    <small class="text-gray-700">9;55 AM</small>
-                </div>
-                <small class="block overflow-ellipsis overflow-hidden whitespace-nowrap text-gray-700">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde, minus facere? Quasi, officia quisquam et voluptate</small>
-            </div>
-        </div>
-        {{-- End of contact with message --}}
+        @endforeach
     </div>
-    {{-- End of messages --}}
 </aside>

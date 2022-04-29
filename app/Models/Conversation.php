@@ -11,7 +11,7 @@ class Conversation extends Model
 
     protected $fillable = [
         'sender_id',
-        'reciver_id',
+        'receiver_id',
         'last_time_message'
     ];
 
