@@ -21,5 +21,8 @@
         "postcss-import": "^14.0.2",
         "pusher-js": "^7.1.0-beta",
         "tailwindcss": "^3.0.18"
+    },
+    "dependencies": {
+        "tw-elements": "^1.0.0-alpha12"
     }
 }

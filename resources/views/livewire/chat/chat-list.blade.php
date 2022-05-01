@@ -67,12 +67,21 @@
                     <div class="flex">
                         <p class="font-bold flex-grow">{{ $this->getChatUserInstance($conversation)->name }}</p>
                         <small class="text-gray-700">
-                            {{ $conversation->messages->last() != null ? $conversation->messages->last()->created_at->shortAbsoluteDiffForHumans() : '' }}
+                            {{ date('H:i A', strtotime($conversation->messages->last()->created_at)) }}
                         </small>
                     </div>
-                    <small class="block overflow-ellipsis overflow-hidden whitespace-nowrap text-gray-700">
-                        {{ $conversation->messages->last() != null ? $conversation->messages->last()->body : '' }}
-                    </small>
+                    <div class="flex">
+                        <small class="block overflow-ellipsis overflow-hidden whitespace-nowrap text-gray-700 flex-grow">
+                            {{ $conversation->messages->last() != null ? $conversation->messages->last()->body : '' }}
+                        </small>
+                        @if (count($conversation->messages->where('read', 0)->where('receiver_id', auth()->user()->id)))
+                            <small class="bg-green-700 text-white px-1 rounded">
+                                {{ count($conversation->messages->where('read', 0)->where('receiver_id', auth()->user()->id)) }}
+                            </small>  
+                        @endif
+                        
+                    </div>
+                    
                 </div>
             </div>
         @endforeach

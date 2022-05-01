@@ -24,7 +24,7 @@
 
             let height = objMain.scrollTop = newHeight - old;
 
-            window.loivewire.emit('updateHeight', {
+            window.livewire.emit('updateHeight', {
                 height: height
             });
         });
@@ -34,6 +34,8 @@
             {
                 window.livewire.emit('loadMoreMessages');
             }
-        });
+            
+        }); 
+
     </script>
 </div>

@@ -16,6 +16,9 @@
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+        <link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.4/dist/flowbite.min.css" />
+
         @livewireStyles
     </head>
     <body>
@@ -25,6 +28,7 @@
 
         @livewireScripts
 
+        <script src="https://unpkg.com/flowbite@1.4.4/dist/flowbite.js"></script>
         @yield('js')
     </body>
 </html>

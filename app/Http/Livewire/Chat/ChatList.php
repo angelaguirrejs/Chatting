@@ -50,6 +50,7 @@ class ChatList extends Component
         $this->selectedConversation = $conversation;
         $receiverInstance = User::find($receiverId);
 
+
         $this->emitTo('chat.chatbox', 'loadConversation', $this->selectedConversation, $receiverInstance);
     }
 
