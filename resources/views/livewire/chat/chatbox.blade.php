@@ -4,15 +4,9 @@
             <div class="flex flex-grow">
                 <div class="w-12 mr-4 relative">
                     <img class="rounded-full" src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
-                    @if ($receiverInstance->status)
-                        <div class="absolute bg-green-400 p-1 rounded-full bottom-0 border-gray-800 border-2"></div>
-                    @else
-                        <div class="absolute bg-gray-800 p-1 rounded-full bottom-0 border-gray-800 border-2"></div>
-                    @endif
                 </div>
                 <div class="self-center">
                     <p class="font-bold flex-grow">{{ $receiverInstance->name }}</p>
-                    <small class="text-gray-700">Online</small>
                 </div>
             </div>
         @else
