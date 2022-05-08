@@ -13,12 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::redirect('/', 'chat');
 
 //Livewire routes
 
 Route::middleware(['auth', 'role:simple'])->group(function(){
     Route::get('users', [\App\Http\Livewire\Chat\CreateChat::class, '__invoke'])->name('users');
-    Route::get('/', [\App\Http\Livewire\Chat\Main::class, '__invoke'])->name('chat');
+    Route::get('/chat/{conversation?}', [\App\Http\Livewire\Chat\Main::class, '__invoke'])->name('chat');
 });
 
 Route::middleware(['auth', 'role:admin'])->group(function(){

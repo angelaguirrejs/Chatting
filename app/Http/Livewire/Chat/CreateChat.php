@@ -10,34 +10,46 @@ class CreateChat extends Component
 {
 
     public $friends;
+    public $email;
 
-    public $message;
+    public function mount()
+    {
+        $this->friends = [];
+    }
 
     public function checkConversation($receiverId)
     {
-        $checkedConversation = Conversation::where('receiver_id', auth()->user()->id)
+        $existingConversation = Conversation::where('receiver_id', auth()->user()->id)
                                             ->where('sender_id', $receiverId)
                                             ->orWhere('receiver_id', $receiverId)
                                             ->where('sender_id', auth()->user()->id)
-                                            ->get();
+                                            ->first();
 
-        if($checkedConversation->isEmpty())
+        if(!$existingConversation)
         {
             $createdConversation = Conversation::create([
                 'receiver_id' => $receiverId,
                 'sender_id'  => auth()->user()->id,
             ]);
-        }
-        else
-        {
-            dd('Existe');
-        }
+
+            return redirect()->route('chat', $createdConversation->id);
+
+        } 
+        
+        return redirect()->route('chat', $existingConversation->id);
                                             
     }
 
     public function render()
     {
-        $this->friends = User::where('id', '!=', auth()->user()->id)->get();
+        if(!is_null($this->email))
+        {
+            $this->friends = User::where('id', '!=', auth()->user()->id)
+                                ->where('email', 'LIKE', '%' . $this->email .'%')
+                                ->whereHas('roles', function($q){
+                                    $q->where('name', 'simple');
+                                })->get();
+        }
 
         return view('livewire.chat.create-chat')
                 ->layout('layouts.guest');

@@ -67,7 +67,7 @@
                     <div class="flex">
                         <p class="font-bold flex-grow">{{ $this->getChatUserInstance($conversation)->name }}</p>
                         <small class="text-gray-700">
-                            {{ date('H:i A', strtotime($conversation->messages->last()->created_at)) }}
+                            {{ $conversation->messages->last() != null ? date('H:i A', strtotime($conversation->messages->last()->created_at)) : '' }}
                         </small>
                     </div>
                     <div class="flex">

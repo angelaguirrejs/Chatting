@@ -1,5 +1,5 @@
 <div class="h-screen flex overflow-hidden">
-    @livewire('chat.chat-list')
+    @livewire('chat.chat-list', ['conversation' => $conversation])
     @livewire('chat.chatbox')
 
     <script>
@@ -35,6 +35,10 @@
                 window.livewire.emit('loadMoreMessages');
             }
             
+        }); 
+
+        document.addEventListener('DOMContentLoaded', event => {
+            window.livewire.emit('checkConversation')
         }); 
 
     </script>

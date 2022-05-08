@@ -21,5 +21,12 @@ class UserSeeder extends Seeder
             'email'    => 'angelaguirre@aguisoft.com',
             'password' => Hash::make('12345678'),
         ])->assignRole('admin');
+
+        $fakeUsers = User::factory(40)->make();
+
+        foreach($fakeUsers as $user)
+        {
+            $user->assignRole('simple');
+        }
     }
 }

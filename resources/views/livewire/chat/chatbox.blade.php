@@ -24,11 +24,11 @@
         @endif
         <div class="flex">
             <!-- Modal toggle -->
-            <button type="button" class="flex-grow mr-5">
+            <a type="button" class="flex-grow mr-5" href="{{ route('users') }}">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                 </svg>
-            </button>
+            </a>
   
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
@@ -102,7 +102,7 @@
 
     <script>
         window.addEventListener('audioNotification', event => {
-            var audio = new Audio('https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3');
+            var audio = new Audio("{{ asset('audio/notify.mp3') }}");
             audio.play();
         });
     </script>

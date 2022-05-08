@@ -9,19 +9,24 @@ use Livewire\Component;
 class ChatList extends Component
 {
     public $conversations;
+    public $conversation;
     public $selectedConversation;
 
     protected $listeners = [
         'chatUserSelected',
+        'checkConversation',
         'refresh' => '$refresh'
     ];
 
-    public function mount()
+    public function mount(Conversation $conversation)
     {
+
         $this->conversations = Conversation::where('sender_id', auth()->id())
                                             ->orWhere('receiver_id', auth()->id())
                                             ->orderBy('last_time_message', 'DESC')
                                             ->get();
+
+        $this->conversation = $conversation;
     }
 
     public function render()
@@ -43,6 +48,14 @@ class ChatList extends Component
         }
 
         return $receiverInstance;
+    }
+
+    public function checkConversation()
+    {
+        if ($this->conversation->exists) 
+        {
+            $this->chatUserSelected($this->conversation, $this->conversation->receiver_id);
+        }
     }
 
     public function chatUserSelected(Conversation $conversation, $receiverId)

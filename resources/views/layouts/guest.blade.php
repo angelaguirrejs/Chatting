@@ -17,7 +17,6 @@
         <script src="{{ asset('js/app.js') }}" defer></script>
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-        <link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.4/dist/flowbite.min.css" />
 
         @livewireStyles
     </head>
@@ -27,8 +26,8 @@
         </div>
 
         @livewireScripts
-
-        <script src="https://unpkg.com/flowbite@1.4.4/dist/flowbite.js"></script>
+        <script defer src="https://unpkg.com/alpinejs@3.10.2/dist/cdn.min.js"></script>
+        @livewire('livewire-ui-modal')
         @yield('js')
     </body>
 </html>
