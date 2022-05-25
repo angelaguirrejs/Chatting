@@ -15,7 +15,8 @@ class Message extends Model
         'conversation_id',
         'body',
         'read',
-        'type'
+        'type',
+        'sentiment'
     ];
 
     // Relationship

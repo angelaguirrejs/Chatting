@@ -22,6 +22,7 @@ return new class extends Migration
             $table->foreign('receiver_id')->references('id')->on('users');
             $table->boolean('read')->default(0)->nullable();
             $table->text('body')->nullable();
+            $table->text('sentiment')->nullable();
             $table->string('type')->nullable();
             $table->timestamps();
         });

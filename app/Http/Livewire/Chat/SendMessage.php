@@ -6,6 +6,7 @@ use App\Events\MessageSent;
 use App\Models\Conversation;
 use App\Models\Message;
 use App\Models\User;
+use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
@@ -39,11 +40,27 @@ class SendMessage extends Component
             return null;
         }
 
+        $client = new Client([
+            'base_uri' => 'https://sentiment-analysis-ia.herokuapp.com/',
+            'timeout'  => 2.0
+        ]);
+
+        $response = $client->request('POST', '/predict', [
+            'json' => [
+                'message' => $this->body
+            ]
+        ])->getBody()->getContents();
+
+        $response = json_decode($response);
+
+        $sentiment = $response->sentiment;
+
         $this->createdMessage = Message::create([
             'conversation_id' => $this->selectedConversation->id,
             'sender_id'       => auth()->user()->id,
             'receiver_id'     => $this->receiverInstance->id,
             'body'            => $this->body,
+            'sentiment'       => $sentiment
         ]);
 
         $this->selectedConversation->last_time_message = $this->createdMessage->created_at;
