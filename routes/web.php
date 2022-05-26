@@ -26,4 +26,9 @@ Route::middleware(['auth', 'role:admin'])->group(function(){
     Route::get('dashboard', [\App\Http\Controllers\Admin\DashboardController::class, 'show'])->name('dashboard');
 });
 
+Route::middleware(['auth', 'role:admin'])->group(function(){
+    Route::get('sentiment-analysis', [\App\Http\Livewire\SentimentAnalysis::class, '__invoke'])->name('sentiment.analysis');
+});
+
+
 require __DIR__.'/auth.php';
